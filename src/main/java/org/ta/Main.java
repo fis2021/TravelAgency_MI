@@ -17,8 +17,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         initDirectory();
         UserService.initDatabase();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
-        primaryStage.setTitle("Registration Example");
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        primaryStage.setTitle("Travel Agency");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
@@ -28,8 +28,6 @@ public class Main extends Application {
         if (!Files.exists(applicationHomePath))
             applicationHomePath.toFile().mkdirs();
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }

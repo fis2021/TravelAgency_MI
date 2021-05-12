@@ -3,6 +3,8 @@ package org.ta.services;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.ta.exceptions.UsernameAlreadyExistsException;
+import org.ta.exceptions.UsernameDoesNotExistException;
+import org.ta.exceptions.WrongPasswordException;
 import org.ta.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -53,6 +55,40 @@ public class UserService {
             throw new IllegalStateException("SHA-512 does not exist!");
         }
         return md;
+    }
+    public static void checkUserCredentials(String username,String password) throws UsernameDoesNotExistException, WrongPasswordException {
+        int oku=0,okp=0,okr=0;
+        for(User user : userRepository.find()){
+            if(Objects.equals(username,user.getUsername())) {
+                oku = 1;
+            }
+            if(Objects.equals(encodePassword(username,password),user.getPassword()))
+                okp = 1;
+        }
+        if( oku == 0 )
+            throw new UsernameDoesNotExistException(username);
+        if ( okp == 0 )
+            throw new WrongPasswordException();
+
+    }
+
+    public static String getLoggedUser(String username){
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                return username;
+        }
+        return "";
+    }
+
+    public static String getUserRole(String username){
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                if(Objects.equals(user.getRole(),"Customer"))
+                    return "Customer";
+                else
+                    return "Travel Agency";
+        }
+        return "";
     }
 
 
