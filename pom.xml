@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.loose.fis</groupId>
-    <artifactId>simple-registration-example</artifactId>
+    <groupId>org.ta</groupId>
+    <artifactId>travel-agency</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class.name>org.loose.fis.sre.Main</main.class.name>
-        <final.jar.name>simple-registration-example</final.jar.name>
+        <main.class.name>org.ta.Main</main.class.name>
+        <final.jar.name>travel-agency</final.jar.name>
     </properties>
 
     <dependencies>
