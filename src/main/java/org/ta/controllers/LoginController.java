@@ -18,7 +18,7 @@ import org.ta.services.UserService;
 public class LoginController {
 
     @FXML
-    private Text loginUsernameMessage;
+    private Text wrongLogIn;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -32,35 +32,35 @@ public class LoginController {
     public void handleLoginAction(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
             UserService.checkUserCredentials(usernameField.getText(), passwordField.getText());
-            loginUsernameMessage.setText("Login successfully!");
+           wrongLogIn.setText("Login successfully!");
             loggedUser = UserService.getLoggedUser(usernameField.getText());
             userRole = UserService.getUserRole(usernameField.getText());
-            if(userRole.equals("Travel Agency")){
-                Parent adminInterface = FXMLLoader.load(getClass().getClassLoader().getResource("admin_trip_page.fxml"));
+            if(userRole.equals("Travel Agent")){
+                Parent adminInterface = FXMLLoader.load(getClass().getClassLoader().getResource("travelAgent_home.fxml"));
                 Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();;
-                window.setTitle("Trips Page");
-                window.setScene(new Scene(adminInterface, 600, 460));
+                window.setTitle("Travel Agent Page");
+                window.setScene(new Scene(adminInterface, 600, 400));
                 window.show();
             }
             else{
-                Parent customerInterface = FXMLLoader.load(getClass().getClassLoader().getResource("customer_trip_page.fxml"));
+                Parent customerInterface = FXMLLoader.load(getClass().getClassLoader().getResource("customer_home.fxml"));
                 Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();;
-                window.setTitle("Trips Page");
-                window.setScene(new Scene(customerInterface, 600, 460));
+                window.setTitle("Customer Page");
+                window.setScene(new Scene(customerInterface, 600, 400));
                 window.show();
 
             }
         } catch (UsernameDoesNotExistException e) {
-            loginUsernameMessage.setText(e.getMessage());
+            wrongLogIn.setText(e.getMessage());
         } catch (WrongPasswordException e){
-            loginUsernameMessage.setText(e.getMessage());
+            wrongLogIn.setText(e.getMessage());
         }
     }
     public void goBackToResgisterScene(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
         Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
         window.setTitle("Registration");
-        window.setScene(new Scene(root1, 600, 460));
+        window.setScene(new Scene(root1, 600, 400));
         window.show();
     }
 
