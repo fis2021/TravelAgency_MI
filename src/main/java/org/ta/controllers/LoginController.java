@@ -33,13 +33,13 @@ public class LoginController {
     @FXML
     public void handleLoginAction(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
-            UserService.checkUserCredentials(usernameField.getText(), passwordField.getText());
+
            wrongLogIn.setText("Login successfully!");
             loggedUser = UserService.getLoggedUser(usernameField.getText());
             userRole = UserService.getUserRole(usernameField.getText());
-            if(userRole.equals("Travel Agent")){
+            if(UserService.checkUserCredentials(usernameField.getText(), passwordField.getText()).equals("Travel Agent")){
                 Parent adminInterface = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("travelAgent_home.fxml")));
-                Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();;
+                Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();
                 window.setTitle("Travel Agent Page");
                 window.setScene(new Scene(adminInterface, 600, 400));
                 window.show();
