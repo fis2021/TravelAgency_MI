@@ -5,9 +5,6 @@ import org.dizitart.no2.objects.ObjectRepository;
 import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.model.Trip;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class TripService {
@@ -22,9 +19,9 @@ public class TripService {
         tripRepository = database.getRepository(Trip.class);
     }
 
-    public static void addTrip(String location, String imgSrc, double price, String period) throws LocationAlreadyExistsException {
+    public static void addTrip(String location, String imgSrc, double price, String period, boolean book) throws LocationAlreadyExistsException {
         checkLocationDoesNotAlreadyExist(location);
-        tripRepository.insert(new Trip(location, imgSrc,price, period));
+        tripRepository.insert(new Trip(location, imgSrc,price, period, book));
     }
 
     public static ObjectRepository<Trip> getTripRepository() {

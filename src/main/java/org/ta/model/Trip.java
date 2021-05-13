@@ -10,12 +10,14 @@ public class Trip {
     private String imgSrc;
     private double price;
     private String period;
+    private boolean book;
 
-    public Trip(String location, String imgSrc, double price, String period) {
+    public Trip(String location, String imgSrc, double price, String period, boolean book) {
         this.location = location;
         this.imgSrc = imgSrc;
         this.price = price;
         this.period = period;
+        this.book = book;
     }
 
     public Trip(){}
@@ -52,16 +54,24 @@ public class Trip {
         this.period = period;
     }
 
+    public boolean getBook() {
+        return book;
+    }
+
+    public void setBook(boolean book) {
+        this.book = book;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Trip trip = (Trip) o;
-        return Double.compare(trip.price, price) == 0 && Objects.equals(location, trip.location) && Objects.equals(imgSrc, trip.imgSrc) && Objects.equals(period, trip.period);
+        return Objects.equals(location, trip.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(location, imgSrc, price, period);
+        return Objects.hash(location, imgSrc, price, period, book);
     }
 }
