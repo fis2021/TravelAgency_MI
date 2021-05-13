@@ -60,6 +60,7 @@ public class UserService {
         }
         return md;
     }
+
     public static String checkUserCredentials(String username, String password) throws UsernameDoesNotExistException, WrongPasswordException {
 
         int oku=0,okp=0,okr=0;
@@ -77,7 +78,6 @@ public class UserService {
             throw new UsernameDoesNotExistException(username);
         if ( okp == 0 )
             throw new WrongPasswordException();
-
 
         return "";
     }

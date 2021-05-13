@@ -33,7 +33,6 @@ public class LoginController {
     @FXML
     public void handleLoginAction(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
-
            wrongLogIn.setText("Login successfully!");
             loggedUser = UserService.getLoggedUser(usernameField.getText());
             userRole = UserService.getUserRole(usernameField.getText());
