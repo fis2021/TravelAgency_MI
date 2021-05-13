@@ -60,20 +60,18 @@ public class UserService {
         }
         return md;
     }
-    public static void checkUserCredentials(String username,String password) throws UsernameDoesNotExistException, WrongPasswordException{
+    public static String checkUserCredentials(String username,String password) throws UsernameDoesNotExistException, WrongPasswordException{
         int oku=0,okp=0,okr=0;
-        for(User user : userRepository.find()){
-            if(Objects.equals(username,user.getUsername())) {
-                oku = 1;
-            }
-            if(Objects.equals(encodePassword(username,password),user.getPassword()))
-                okp = 1;
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()) &&
+                    Objects.equals(encodePassword(username , password),user.getPassword()))
+                return user.getRole();
         }
         if( oku == 0 )
             throw new UsernameDoesNotExistException(username);
         if ( okp == 0 )
             throw new WrongPasswordException();
-
+        return "";
     }
 
     public static String getLoggedUser(String username){
