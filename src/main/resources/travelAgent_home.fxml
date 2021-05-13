@@ -52,17 +52,23 @@
                 </Text>
             </children>
         </GridPane>
+
         <Button fx:id="logoutButton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
       <Button fx:id="buttonAdd" layoutX="34.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Add" textFill="WHITE">
+
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
+
       <Button fx:id="buttonDelete" layoutX="156.0" layoutY="35.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Delete" textFill="WHITE">
+
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
+
       <Button fx:id="MyOrdersButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="MyOrders" textFill="WHITE" />
+
     </children>
 </AnchorPane>

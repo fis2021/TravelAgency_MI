@@ -38,7 +38,7 @@ public class LoginController {
             userRole = UserService.getUserRole(usernameField.getText());
             if(UserService.checkUserCredentials(usernameField.getText(), passwordField.getText()).equals("Travel Agent")){
                 Parent adminInterface = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("travelAgent_home.fxml")));
-                Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();;
+                Stage window = (Stage) ((Node) TripsPageInterface.getSource()).getScene().getWindow();
                 window.setTitle("Travel Agent Page");
                 window.setScene(new Scene(adminInterface, 600, 400));
                 window.show();
