@@ -60,7 +60,7 @@ public class UserService {
         }
         return md;
     }
-    public static void checkUserCredentials(String username,String password) throws UsernameDoesNotExistException, WrongPasswordException {
+    public static void checkUserCredentials(String username,String password) throws UsernameDoesNotExistException, WrongPasswordException{
         int oku=0,okp=0,okr=0;
         for(User user : userRepository.find()){
             if(Objects.equals(username,user.getUsername())) {
@@ -94,26 +94,5 @@ public class UserService {
         }
         return "";
     }
-
-
-    public static void checkUserCredentials(String username,String password,String role) throws UsernameDoesNotExistException, WrongPasswordException{
-        int oku=0,okp=0,okr=0;
-        for(User user : userRepository.find()){
-            if(Objects.equals(username,user.getUsername())) {
-                oku = 1;
-                if(Objects.equals(role,user.getRole()))
-                    okr = 1;
-            }
-            if(Objects.equals(encodePassword(username,password),user.getPassword()))
-                okp = 1;
-        }
-        if( oku == 0 )
-            throw new UsernameDoesNotExistException(username);
-        if ( okp == 0 )
-            throw new WrongPasswordException();
-
-    }
-
-
 
 }

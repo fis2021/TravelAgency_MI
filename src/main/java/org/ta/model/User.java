@@ -2,6 +2,8 @@ package org.ta.model;
 
 import org.dizitart.no2.objects.Id;
 
+import java.util.Objects;
+
 public class User {
     @Id
     private String username;
@@ -48,9 +50,9 @@ public class User {
 
         User user = (User) o;
 
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return role != null ? role.equals(user.role) : user.role == null;
+        if (!Objects.equals(username, user.username)) return false;
+        if (!Objects.equals(password, user.password)) return false;
+        return Objects.equals(role, user.role);
     }
 
     @Override
