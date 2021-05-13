@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 public class TravelAgentController {
 
+
+public class TravelAgentController {
+
     @FXML
     public void handleAdd(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("addTrips.fxml"));
