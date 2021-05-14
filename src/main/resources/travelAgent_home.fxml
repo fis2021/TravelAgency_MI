@@ -21,11 +21,10 @@
                 <Image url="@img/background.jpg" />
             </image>
         </ImageView>
-        <ScrollPane layoutX="112.0" layoutY="100.0" prefHeight="265.0" prefWidth="377.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+        <ScrollPane layoutX="112.0" layoutY="100.0" prefHeight="290.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="100.0">
             <content>
-                <TableView fx:id="table" prefHeight="288.0">
+                <TableView fx:id="tripsTable" prefHeight="288.0">
                     <columns>
-                        <TableColumn fx:id="firstNameColumn" maxWidth="150.0" prefWidth="150.0" />
                         <TableColumn fx:id="locationColumn" maxWidth="150.0" prefWidth="150.0" text="Location" />
                         <TableColumn fx:id="periodColumn" maxWidth="150.0" prefWidth="150.0" text="Period" />
                         <TableColumn fx:id="priceColumn" maxWidth="109.0" minWidth="-1.0" prefWidth="96.0" text="Price&#10;" />
@@ -54,7 +53,7 @@
         </GridPane>
 
         <Button fx:id="logoutButton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
-      <Button fx:id="buttonAdd" layoutX="34.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Add" textFill="WHITE">
+      <Button fx:id="buttonAdd" layoutX="34.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddTripButton" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Add" textFill="WHITE">
 
          <font>
             <Font name="System Bold" size="13.0" />

@@ -13,14 +13,4 @@ public class FileSystemService {
         return APPLICATION_HOME_PATH.resolve(Paths.get(".", path));
     }
 
-    public static final Path APPLICATION_HOME_PATH2 = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
-
-
-    public static Path getPathToFile2(String... path) {
-        return APPLICATION_HOME_PATH2.resolve(Paths.get(".", path));
-    }
-
-
-
-
 }

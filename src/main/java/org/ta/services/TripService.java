@@ -1,91 +1,46 @@
 package org.ta.services;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.fxml.FXML;
-import javafx.util.Pair;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.model.Trip;
-import org.ta.model.TripTable;
 
-
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
-import java.util.LinkedList;
 
 public class TripService {
 
-    private static ObjectRepository<TripTable> tripRepository;
+    private static ObjectRepository<Trip> tripRepository;
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("trips.db").toFile())
                 .openOrCreate("test", "test");
 
-        tripRepository = database.getRepository(TripTable.class);
+        tripRepository = database.getRepository(Trip.class);
     }
-    @FXML
     public static void addTrip(String location, String price, String period) throws LocationAlreadyExistsException {
-        //checkLocationDoesNotAlreadyExist(location);
-        tripRepository.insert(new TripTable(location,price, period));
-        //tripRepository.update(trip);
+        checkLocationDoesNotAlreadyExist(location);
+        tripRepository.insert(new Trip(location,price, period));
     }
-
-
-
-
-    public static ObjectRepository<TripTable> getTripRepository() {
-        return tripRepository;
-    }
-
-    public static List<TripTable> getAllTrips(String username) {
-        for (TripTable user : tripRepository.find()) {
-            if (user.equals_agent(username)) return tripRepository.find().toList();
-        }
-        return Collections.emptyList();
-    }
-    /*private static void checkLocationDoesNotAlreadyExist(String location) throws LocationAlreadyExistsException {
-        for (TripTable user : tripRepository.find()) {
-            if (Objects.equals(location, user.getLocation()))
+    public static void checkLocationDoesNotAlreadyExist(String location) throws LocationAlreadyExistsException {
+        for (Trip trip : tripRepository.find()) {
+            if (Objects.equals(location, trip.getLocation()))
                 throw new LocationAlreadyExistsException(location);
         }
-    }*/
-
-
-
-/*
-    private static MessageDigest getMessageDigest() {
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-512");
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("SHA-512 does not exist!");
-        }
-        return md;
     }
-
-
-    public static String getLoggedUser(String username){
-        for (User user : tripRepository.find()) {
-            if (Objects.equals(username, user.getUsername()))
-                return username;
+    public static ArrayList<Trip> getAllTrips(){
+        ArrayList<Trip> list = new ArrayList<>();
+        for(Trip trip : tripRepository.find()) {
+            list.add(trip);
         }
-        return "";
+        return list;
     }
-
-    public static String getUserRole(String username){
-        for (User user : tripRepository.find()) {
-            if (Objects.equals(username, user.getUsername()))
-                if(Objects.equals(user.getRole(),"Customer"))
-                    return "Customer";
-                else
-                    return "Travel Agency";
-        }
-        return "";
+    public static Trip getTrip(String location){
+        for(Trip trip : tripRepository.find())
+            if(Objects.equals(location, trip.getLocation()))
+                return trip;
+        return null;
     }
-
-*/
 
 }
