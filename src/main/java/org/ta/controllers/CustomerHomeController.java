@@ -1,13 +1,24 @@
 package org.ta.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.ta.exceptions.TripAlreadyBookedException;
+import org.ta.model.Trip;
+import org.ta.services.TripService;
 
-public class CustomerHomeController {/*
+import java.util.List;
+
+public class CustomerHomeController {
+
     public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
@@ -16,59 +27,35 @@ public class CustomerHomeController {/*
         window.show();
     }
 
-    public void bookTrip(){
-
-    }
     @FXML
-    private TableView<TeacherSubjects> tableView;
+    private TableView<Trip> offersTable;
     @FXML
-    private TableColumn<TeacherSubjects,String> colSubject;
+    private TableColumn<Trip,String> locationColumn;
     @FXML
-    private TextField addSubject;
-
-
-    private String teacherUsername;
-
+    private TableColumn<Trip,String> periodColumn;
     @FXML
-    public void switchToLogIn() throws Exception {
-        Main.setRoot("login");
+    private TableColumn<Trip,String> priceColumn;
+
+    public void initialize() {
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        offersTable.setItems(categories);
+    }
+    private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getAllTrips());
+    public List<Trip> getTripsFromTable() {
+        return offersTable.getItems();
     }
 
-    @FXML
-    public void switchToSubjects() throws Exception {
-        Main.setRoot("teacher2");
-
-        TeacherSubjectsController controller=Main.getPath().getController();
-        ObservableList<TeacherSubjects> subject;
-        subject=tableView.getSelectionModel().getSelectedItems();
-        controller.setHelloMessage(subject.get(0).getSubjectName());
-        controller.populateDataFromDashboard(teacherUsername,subject.get(0).getSubjectName());
+    public void bookTrip(Trip trip)throws TripAlreadyBookedException {
+        trip.setBook(LoginController.getLoggedUser());
+        if(trip.getBook().equals("0"))
+            throw new TripAlreadyBookedException();
     }
 
-    public void populateDataFromLogIn(String username){
-        teacherUsername=username;
-        colSubject.setCellValueFactory(new PropertyValueFactory<>("SubjectName"));
 
-        LinkedList<String> teacherSubject=CatalogService.teacherSubjects(teacherUsername);
 
-        for(String subject:teacherSubject){
-            tableView.getItems().add(new TeacherSubjects(subject));
-        }
-    }
 
-    public void handleAddingSubject(){
-        CatalogService.addTeacher_Subject(teacherUsername,addSubject.getText());
-        tableView.getItems().add(new TeacherSubjects(addSubject.getText()));
-    }
 
-    public void handleRemovingSubject(){
-
-        ObservableList<TeacherSubjects> allSubjects,singleSubjects;
-        singleSubjects=tableView.getSelectionModel().getSelectedItems();
-        CatalogService.clearSubject(teacherUsername,singleSubjects.get(0).getSubjectName());
-
-        allSubjects= tableView.getItems();
-        singleSubjects.forEach(allSubjects::remove);
-    }
-*/
 }

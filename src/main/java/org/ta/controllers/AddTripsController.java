@@ -1,39 +1,46 @@
 package org.ta.controllers;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.ta.exceptions.LocationAlreadyExistsException;
-import org.ta.exceptions.UsernameAlreadyExistsException;
-import org.ta.exceptions.UsernameDoesNotExistException;
-import org.ta.exceptions.WrongPasswordException;
 import org.ta.services.TripService;
-import org.ta.services.UserService;
 
 import java.util.Objects;
 
 public class AddTripsController {
+
     @FXML
     private TextField locationField;
     @FXML
     private TextField periodField;
     @FXML
     private TextField priceField;
-
     @FXML
-    public void handleAddTripButton(javafx.event.ActionEvent TripsPageInterface) throws Exception {
+    private TextField addMessage;
+
+    public void handleAddInDatabase()  {
+
         try {
-            TripService.addTrip(locationField.getText(), priceField.getText(),periodField.getText());
-            System.out.println("added");
-        }catch (LocationAlreadyExistsException e){};
+            TripService.checkLocationDoesNotAlreadyExist(locationField.getText());
+            TripService.addTrip(locationField.getText(), periodField.getText(), priceField.getText());
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("travelAgent_home.fxml")));
+            Stage window = (Stage) addMessage.getScene().getWindow();
+            window.setScene(new Scene(root, 600, 400));
+
+        }catch (Exception e){
+            addMessage.setText(e.getMessage());
+        }
 
     }
-
+    public void handleGoBackButton(javafx.event.ActionEvent login)throws Exception{
+        Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("travelAgent_home.fxml")));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
+        window.setTitle("Travel Agent");
+        window.setScene(new Scene(root1, 600, 400));
+        window.show();
+    }
 }

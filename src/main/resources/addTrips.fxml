@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -41,10 +40,9 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="locationField" layoutX="146.0" layoutY="158.0" />
-                <PasswordField fx:id="periodField" layoutX="146.0" layoutY="198.0" />
-                <Button fx:id="AddTripButton" layoutX="122.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleAddTripButton" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Add Trip" />
-                <Text fx:id="wrongLogIn" fill="#ff0707" layoutX="17.0" layoutY="282.0" nodeOrientation="LEFT_TO_RIGHT">
+
+                <Button fx:id="addButton" layoutX="184.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleAddInDatabase" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Add Trip" />
+                <Text fx:id="succAdded" fill="#ff0707" layoutX="59.0" layoutY="374.0" nodeOrientation="LEFT_TO_RIGHT" wrappingWidth="141.0">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -54,7 +52,10 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <PasswordField fx:id="priceField1" layoutX="146.0" layoutY="238.0" />
+                <TextField fx:id="priceField" layoutX="146.0" layoutY="237.0" />
+                <TextField fx:id="locationField" layoutX="146.0" layoutY="158.0" />
+                <TextField fx:id="periodField" layoutX="146.0" layoutY="198.0" />
+            <Button fx:id="backButton" layoutX="247.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleGoBackButton" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #63C5DA;" text="Go Back" textFill="WHITE" />
             </children>
         </AnchorPane>
     </center>
