@@ -1,11 +1,15 @@
 package org.ta.services;
 
+import javafx.util.Pair;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.model.Trip;
 
+
+import java.util.List;
 import java.util.Objects;
+import java.util.LinkedList;
 
 public class TripService {
 
@@ -19,13 +23,18 @@ public class TripService {
         tripRepository = database.getRepository(Trip.class);
     }
 
-    public static void addTrip(String location, String imgSrc, double price, String period, boolean book) throws LocationAlreadyExistsException {
+    public static void addTrip(String location, String price, String period) throws LocationAlreadyExistsException {
         checkLocationDoesNotAlreadyExist(location);
-        tripRepository.insert(new Trip(location, imgSrc,price, period, book));
+        tripRepository.insert(new Trip(location,price, period));
+        //tripRepository.update(trip);
     }
 
     public static ObjectRepository<Trip> getTripRepository() {
         return tripRepository;
+    }
+
+    public static List<Trip> getAllTrips() {
+        return tripRepository.find().toList();
     }
 
     private static void checkLocationDoesNotAlreadyExist(String location) throws LocationAlreadyExistsException {
@@ -34,6 +43,8 @@ public class TripService {
                 throw new LocationAlreadyExistsException(location);
         }
     }
+
+
 
 /*
     private static MessageDigest getMessageDigest() {

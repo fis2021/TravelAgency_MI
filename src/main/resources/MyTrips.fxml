@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ta.controllers.MyOrdersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.mov.controllers.BookingListController">
     <children>
         <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -53,11 +53,6 @@
             </children>
         </GridPane>
         <Button fx:id="LogOutbutton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
-        <Button fx:id="AllSetButton" layoutX="96.0" layoutY="35.0" mnemonicParsing="false" onAction="#allSet" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="All Set" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Button>
-        <Button fx:id="HomeButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToTravelAgentHome" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Home" textFill="WHITE" />
+        <Button fx:id="HomeButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToCustomerHome" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Home" textFill="WHITE" />
     </children>
 </AnchorPane>
