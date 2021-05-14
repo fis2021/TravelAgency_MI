@@ -1,23 +1,25 @@
 package org.ta.model;
 
 import org.dizitart.no2.objects.Id;
+import org.ta.controllers.LoginController;
 
 import java.util.Objects;
 
 public class Trip {
     @Id
     private String location;
-    private String imgSrc;
-    private double price;
+    private String price;
     private String period;
-    private boolean book;
+    private String book;
+    private String allset;
 
-    public Trip(String location, String imgSrc, double price, String period, boolean book) {
+
+    public Trip(String location,  String price, String period) {
         this.location = location;
-        this.imgSrc = imgSrc;
         this.price = price;
         this.period = period;
-        this.book = book;
+        this.book = "0";
+        this.allset= LoginController.getLoggedUser();
     }
 
     public Trip(){}
@@ -30,19 +32,11 @@ public class Trip {
         this.location = location;
     }
 
-    public String getImgSrc() {
-        return imgSrc;
-    }
-
-    public void setImgSrc(String imgSrc) {
-        this.imgSrc = imgSrc;
-    }
-
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -54,12 +48,16 @@ public class Trip {
         this.period = period;
     }
 
-    public boolean getBook() {
+    public String getBook() {
         return book;
     }
 
-    public void setBook(boolean book) {
+    public void setBook(String book) {
         this.book = book;
+    }
+
+    public String getAllset() {
+        return allset;
     }
 
     @Override
@@ -72,6 +70,6 @@ public class Trip {
 
     @Override
     public int hashCode() {
-        return Objects.hash(location, imgSrc, price, period, book);
+        return Objects.hash(location, price, period, book,allset);
     }
 }

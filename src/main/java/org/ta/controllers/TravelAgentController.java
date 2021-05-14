@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class TravelAgentController {
@@ -38,6 +39,22 @@ public class TravelAgentController {
         window.setTitle("My Orders");
         window.setScene(new Scene(root1, 600, 400));
         window.show();
+    }
+
+    private String studentUsername;
+    public void populateDataFromLogInTravelAgent(String username){
+        studentUsername=username;
+
+        studentUsername.getLocation().setCellValueFactory(new PropertyValueFactory<>("Location"));
+        studentUsername.getPeriod().setCellValueFactory(new PropertyValueFactory<>("Period"));
+        studentUsername.getPrice().setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+
+        LinkedList<Pair<String,String>> subejcts_teachers= CatalogService.studentSubjectsTeachers(studentUsername);
+
+        for(Pair<String,String> subjects:subejcts_teachers){
+            tableView.getItems().add(new StudentTable(subjects.getKey(),subjects.getValue()));
+        }
     }
 
 }
