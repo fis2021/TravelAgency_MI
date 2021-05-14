@@ -17,34 +17,34 @@ public class TripTable {
         this.location=new SimpleStringProperty(location);
         this.period=new SimpleStringProperty(period);
         this.price=new SimpleStringProperty(price);
-        this.book="0";
-        this.allset= LoginController.getLoggedUser();
+       // this.book="0";
+       // this.allset= LoginController.getLoggedUser();
 
     }
     public TripTable(){}
 
-    public SimpleStringProperty getLocation() {
-        return location;
+    public String getLocation() {
+        return location.get();
     }
 
-    public void setLocation(SimpleStringProperty location) {
-        this.location = location;
+    public void setLocation(String location) {
+        this.location =new SimpleStringProperty( location);
     }
 
-    public SimpleStringProperty getPrice() {
-        return price;
+    public String getPrice() {
+        return price.get();
     }
 
-    public void setPrice(SimpleStringProperty price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.price = new SimpleStringProperty(price);
     }
 
-    public SimpleStringProperty getPeriod() {
-        return period;
+    public String getPeriod() {
+        return period.get();
     }
 
-    public void setPeriod(SimpleStringProperty period) {
-        this.period = period;
+    public void setPeriod(String period) {
+        this.period = new SimpleStringProperty(period);
     }
 
     public String getBook() {
@@ -65,6 +65,13 @@ public class TripTable {
         if (o == null || getClass() != o.getClass()) return false;
         TripTable tripTable = (TripTable) o;
         return location.equals(tripTable.location);
+    }
+
+    public boolean equals_agent(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TripTable tripTable = (TripTable) o;
+        return allset.equals(tripTable.allset);
     }
 
     @Override

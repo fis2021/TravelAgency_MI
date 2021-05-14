@@ -5,10 +5,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.ta.model.TripTable;
+import org.ta.services.TripService;
+
+import java.util.List;
 
 public class TravelAgentController {
+
+    @FXML
+    private TableView<TripTable> tableView;
+    @FXML
+    private TableColumn<TripTable,String> locationColumn;
+    @FXML
+    private TableColumn<TripTable,String> periodColumn;
+    @FXML
+    private TableColumn<TripTable,String> priceColumn;
+
 
     @FXML
     public void handleAdd(javafx.event.ActionEvent login)throws Exception{
@@ -41,19 +56,19 @@ public class TravelAgentController {
         window.show();
     }
 
-    private String studentUsername;
+    private String Username;
     public void populateDataFromLogInTravelAgent(String username){
-        studentUsername=username;
+        Username=username;
 
-        studentUsername.getLocation().setCellValueFactory(new PropertyValueFactory<>("Location"));
-        studentUsername.getPeriod().setCellValueFactory(new PropertyValueFactory<>("Period"));
-        studentUsername.getPrice().setCellValueFactory(new PropertyValueFactory<>("Price"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
 
-        LinkedList<Pair<String,String>> subejcts_teachers= CatalogService.studentSubjectsTeachers(studentUsername);
+        List<TripTable> packages= TripService.getAllTrips(Username);
 
-        for(Pair<String,String> subjects:subejcts_teachers){
-            tableView.getItems().add(new StudentTable(subjects.getKey(),subjects.getValue()));
+        for(TripTable trips:packages){
+            tableView.getItems().add(new TripTable(trips.getLocation(),trips.getPeriod(), trips.getPrice()));
         }
     }
 

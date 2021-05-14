@@ -1,5 +1,6 @@
 package org.ta.controllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,16 +27,13 @@ public class AddTripsController {
     @FXML
     private TextField priceField;
 
-    private static String loggedUser;
     @FXML
     public void handleAddTripButton(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
-            TripService.addTrip(locationField.getText(),  priceField.getText(), periodField.getText() );
-        } catch (LocationAlreadyExistsException e){};
+            TripService.addTrip(locationField.getText(), priceField.getText(),periodField.getText());
+            System.out.println("added");
+        }catch (LocationAlreadyExistsException e){};
 
     }
 
-    public static String getLoggedUser(){
-        return loggedUser;
-    }
 }
