@@ -1,48 +1,57 @@
 package org.ta.services;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXML;
 import javafx.util.Pair;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.model.Trip;
+import org.ta.model.TripTable;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.LinkedList;
 
 public class TripService {
 
-    private static ObjectRepository<Trip> tripRepository;
+    private static ObjectRepository<TripTable> tripRepository;
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("trips.db").toFile())
                 .openOrCreate("test", "test");
 
-        tripRepository = database.getRepository(Trip.class);
+        tripRepository = database.getRepository(TripTable.class);
     }
-
+    @FXML
     public static void addTrip(String location, String price, String period) throws LocationAlreadyExistsException {
-        checkLocationDoesNotAlreadyExist(location);
-        tripRepository.insert(new Trip(location,price, period));
+        //checkLocationDoesNotAlreadyExist(location);
+        tripRepository.insert(new TripTable(location,price, period));
         //tripRepository.update(trip);
     }
 
-    public static ObjectRepository<Trip> getTripRepository() {
+
+
+
+    public static ObjectRepository<TripTable> getTripRepository() {
         return tripRepository;
     }
 
-    public static List<Trip> getAllTrips() {
-        return tripRepository.find().toList();
+    public static List<TripTable> getAllTrips(String username) {
+        for (TripTable user : tripRepository.find()) {
+            if (user.equals_agent(username)) return tripRepository.find().toList();
+        }
+        return Collections.emptyList();
     }
-
-    private static void checkLocationDoesNotAlreadyExist(String location) throws LocationAlreadyExistsException {
-        for (Trip user : tripRepository.find()) {
+    /*private static void checkLocationDoesNotAlreadyExist(String location) throws LocationAlreadyExistsException {
+        for (TripTable user : tripRepository.find()) {
             if (Objects.equals(location, user.getLocation()))
                 throw new LocationAlreadyExistsException(location);
         }
-    }
+    }*/
 
 
 

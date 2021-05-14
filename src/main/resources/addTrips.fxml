@@ -43,8 +43,7 @@
                 </Label>
                 <TextField fx:id="locationField" layoutX="146.0" layoutY="158.0" />
                 <PasswordField fx:id="periodField" layoutX="146.0" layoutY="198.0" />
-                <Button fx:id="AddTripButton" layoutX="122.0" layoutY="345.0" mnemonicParsing="false" onAction="#AddTrip" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Add Trip" />
-                <Button fx:id="AddPictureButton" layoutX="118.0" layoutY="276.0" mnemonicParsing="false" onAction="#AddPicture" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #FFFFFF;" text="Add picture" />
+                <Button fx:id="AddTripButton" layoutX="122.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleAddTripButton" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Add Trip" />
                 <Text fx:id="wrongLogIn" fill="#ff0707" layoutX="17.0" layoutY="282.0" nodeOrientation="LEFT_TO_RIGHT">
                     <font>
                         <Font name="System Bold" size="13.0" />
