@@ -1,11 +1,22 @@
 package org.ta.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.ta.exceptions.UsernameAlreadyExistsException;
+import org.ta.model.Trip;
+import org.ta.services.TripService;
+import org.ta.services.UserService;
+
+import java.util.List;
 
 public class MyOrdersController {
 
@@ -26,9 +37,30 @@ public class MyOrdersController {
         window.setScene(new Scene(root1, 600, 400));
         window.show();
     }
+    @FXML
+    private TableView<Trip> myOrdersTable;
+    @FXML
+    private TableColumn<Trip,String> locationColumn;
+    @FXML
+    private TableColumn<Trip,String> periodColumn;
+    @FXML
+    private TableColumn<Trip,String> priceColumn;
+
+    public void initialize() {
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        myOrdersTable.setItems(categories);
+    }
+    private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getMyBookedTrips());
+    public List<Trip> getTripsFromTable() {
+        return myOrdersTable.getItems();
+    }
 
     @FXML
-    public void allSet(){
-
-    }
+    public void handleAllSet(Trip trip) {
+        trip.setAllSet(trip.getBook());
+        }
 }
+

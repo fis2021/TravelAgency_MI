@@ -56,8 +56,12 @@ public class Trip {
         this.book = book;
     }
 
-    public String getAllset() {
+    public String getAllSet() {
         return allset;
+    }
+
+    public void setAllSet(String book) {
+        this.allset = allset;
     }
 
     @Override

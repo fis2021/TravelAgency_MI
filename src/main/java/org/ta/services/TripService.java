@@ -2,6 +2,7 @@ package org.ta.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.ta.controllers.LoginController;
 import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.model.Trip;
 
@@ -41,6 +42,13 @@ public class TripService {
             if(Objects.equals(location, trip.getLocation()))
                 return trip;
         return null;
+    }
+    public static ArrayList<Trip> getMyBookedTrips(){
+        ArrayList<Trip> list = new ArrayList<>();
+        for(Trip trip : tripRepository.find()) {
+            if(!(trip.getBook().equals("0")&&trip.getAllSet().equals(LoginController.getLoggedUser())))list.add(trip);
+        }
+        return list;
     }
 
 }
