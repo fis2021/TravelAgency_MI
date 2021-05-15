@@ -52,7 +52,7 @@
                 </Text>
             </children>
         </GridPane>
-      <Button fx:id="MyTripsButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="MyTrips" textFill="WHITE" />
+      <Button fx:id="MyTripsButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToMyTrips"  prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="MyTrips" textFill="WHITE" />
       <Button fx:id="logoutButton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
       <Button fx:id="BookButton" layoutX="96.0" layoutY="35.0" mnemonicParsing="false"  onAction="#bookTrip" prefHeight="33.0"  prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Book" textFill="WHITE">
          <font>

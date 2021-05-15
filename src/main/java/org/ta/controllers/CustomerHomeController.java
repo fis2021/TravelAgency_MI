@@ -16,6 +16,7 @@ import org.ta.model.Trip;
 import org.ta.services.TripService;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CustomerHomeController {
 
@@ -58,6 +59,15 @@ public class CustomerHomeController {
         Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
         window.setTitle("Login");
         window.setScene(new Scene(root1, 600, 400));
+        window.show();
+    }
+
+    @FXML
+    public void goToMyTrips(javafx.event.ActionEvent login)throws Exception{
+        Parent root2 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("myTrips.fxml")));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
+        window.setTitle("My Trips");
+        window.setScene(new Scene(root2, 600, 400));
         window.show();
     }
 
