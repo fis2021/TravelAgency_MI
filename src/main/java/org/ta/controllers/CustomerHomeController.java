@@ -19,14 +19,6 @@ import java.util.List;
 
 public class CustomerHomeController {
 
-    public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
-        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
-        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
-        window.setTitle("Login");
-        window.setScene(new Scene(root1, 600, 400));
-        window.show();
-    }
-
     @FXML
     private TableView<Trip> offersTable;
     @FXML
@@ -43,15 +35,30 @@ public class CustomerHomeController {
 
         offersTable.setItems(categories);
     }
-    private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getAllTrips());
+    private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getAllTripsCustomer());
     public List<Trip> getTripsFromTable() {
         return offersTable.getItems();
     }
 
-    public void bookTrip(Trip trip)throws TripAlreadyBookedException {
-        trip.setBook(LoginController.getLoggedUser());
-        if(trip.getBook().equals("0"))
-            throw new TripAlreadyBookedException();
+
+    public void bookTrip() {
+        ObservableList<Trip> singleTrip,allTrips;
+        singleTrip=offersTable.getSelectionModel().getSelectedItems();
+
+        TripService.BookThisTrip(singleTrip.get(0));
+
+        allTrips= offersTable.getItems();
+        singleTrip.forEach(allTrips::remove);
+
+    }
+
+    @FXML
+    public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
+        window.setTitle("Login");
+        window.setScene(new Scene(root1, 600, 400));
+        window.show();
     }
 
 

@@ -54,13 +54,22 @@ public class MyOrdersController {
         myOrdersTable.setItems(categories);
     }
     private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getMyBookedTrips());
+
     public List<Trip> getTripsFromTable() {
         return myOrdersTable.getItems();
     }
 
     @FXML
-    public void handleAllSet(Trip trip) {
-        trip.setAllSet(trip.getBook());
-        }
+    public void allSetTrip() {
+        ObservableList<Trip> singleTrip,allTrips;
+        singleTrip=myOrdersTable.getSelectionModel().getSelectedItems();
+
+        TripService.AllSetThisTrip(singleTrip.get(0));
+
+
+        allTrips= myOrdersTable.getItems();
+        singleTrip.forEach(allTrips::remove);
+
+    }
 }
 
