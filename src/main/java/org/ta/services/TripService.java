@@ -47,6 +47,16 @@ public class TripService {
         }
         return list;
     }
+
+    public static ArrayList<Trip> getMyTripsCustomer(){
+        ArrayList<Trip> list = new ArrayList<>();
+        for(Trip trip : tripRepository.find()) {
+            if( trip.getBook().equals(LoginController.getLoggedUser() ))
+                list.add(trip);
+        }
+        return list;
+    }
+
     public static Trip getTrip(String location){
         for(Trip trip : tripRepository.find())
             if(Objects.equals(location, trip.getLocation()))
