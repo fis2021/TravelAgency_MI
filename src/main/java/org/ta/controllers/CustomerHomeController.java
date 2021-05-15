@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.exceptions.TripAlreadyBookedException;
 import org.ta.model.Trip;
 import org.ta.services.TripService;
@@ -69,6 +70,27 @@ public class CustomerHomeController {
         window.setTitle("My Trips");
         window.setScene(new Scene(root2, 600, 400));
         window.show();
+    }
+
+    private int counter=0;
+
+    public void setLocationRec(int counter,String location){
+
+        for(int i=1;i<=counter;i++){
+            location=location+"?";
+        }
+    }
+
+    private String locationRec="";
+
+    public void handleRecommendationInDatabase() throws LocationAlreadyExistsException {
+        counter++;
+
+        setLocationRec(counter,locationRec);
+
+        TripService.checkLocationDoesNotAlreadyExist(locationRec);
+        TripService.addTrip("?", "?", "?");
+
     }
 
 

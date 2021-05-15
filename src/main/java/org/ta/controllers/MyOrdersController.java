@@ -37,6 +37,16 @@ public class MyOrdersController {
         window.setScene(new Scene(root1, 600, 400));
         window.show();
     }
+
+    @FXML
+    public void goToRecommendation(javafx.event.ActionEvent login)throws Exception{
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("recommendation.fxml"));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
+        window.setTitle("Recommendation");
+        window.setScene(new Scene(root1, 600, 400));
+        window.show();
+        handleRemoveTrip();
+    }
     @FXML
     private TableView<Trip> myOrdersTable;
     @FXML
@@ -71,5 +81,16 @@ public class MyOrdersController {
         singleTrip.forEach(allTrips::remove);
 
     }
+
+    public void handleRemoveTrip() {
+        ObservableList<Trip> allTrips,singleTrip;
+        singleTrip=myOrdersTable.getSelectionModel().getSelectedItems();
+
+        TripService.clearTrip(singleTrip.get(0).getLocation(),singleTrip.get(0).getPeriod(),singleTrip.get(0).getPrice());
+
+        allTrips= myOrdersTable.getItems();
+        singleTrip.forEach(allTrips::remove);
+    }
+
 }
 

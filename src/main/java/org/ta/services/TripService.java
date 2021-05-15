@@ -33,7 +33,7 @@ public class TripService {
     public static ArrayList<Trip> getAllTrips(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
-            if( (trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() ))
+            if(  (trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() ))
             list.add(trip);
         }
         return list;
@@ -42,7 +42,7 @@ public class TripService {
     public static ArrayList<Trip> getAllTripsCustomer(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
-            if( (trip.getBook().equals("0") ))
+            if( (trip.getBook().equals("0") ) && !trip.getPeriod().equals("?" ))
                 list.add(trip);
         }
         return list;
@@ -66,7 +66,7 @@ public class TripService {
     public static ArrayList<Trip> getMyBookedTrips(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
-            if( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() ))
+            if( ( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() )) || trip.getPeriod().equals("?") )
                 list.add(trip);
         }
         return list;
@@ -101,6 +101,10 @@ public class TripService {
             }
         }
 
+    }
+
+    public static void setBook(Trip bookTrip){
+        bookTrip.setBook(bookTrip.getBook());
     }
 
 }
