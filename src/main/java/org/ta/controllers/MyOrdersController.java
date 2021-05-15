@@ -60,8 +60,16 @@ public class MyOrdersController {
     }
 
     @FXML
-    public void handleAllSet(Trip trip) {
-        trip.setAllSet(trip.getBook());
-        }
+    public void allSetTrip() {
+        ObservableList<Trip> singleTrip,allTrips;
+        singleTrip=myOrdersTable.getSelectionModel().getSelectedItems();
+
+        TripService.AllSetThisTrip(singleTrip.get(0));
+
+
+        allTrips= myOrdersTable.getItems();
+        singleTrip.forEach(allTrips::remove);
+
+    }
 }
 

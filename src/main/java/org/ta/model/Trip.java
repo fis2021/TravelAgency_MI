@@ -60,7 +60,7 @@ public class Trip {
         return allset;
     }
 
-    public void setAllSet(String book) {
+    public void setAllSet(String allset) {
         this.allset = allset;
     }
 
