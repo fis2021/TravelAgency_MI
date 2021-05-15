@@ -54,6 +54,7 @@ public class MyOrdersController {
         myOrdersTable.setItems(categories);
     }
     private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getMyBookedTrips());
+
     public List<Trip> getTripsFromTable() {
         return myOrdersTable.getItems();
     }

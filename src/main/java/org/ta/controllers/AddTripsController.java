@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.ta.services.TripService;
 
@@ -20,7 +21,7 @@ public class AddTripsController {
     @FXML
     private TextField priceField;
     @FXML
-    private TextField addMessage;
+    private Text addMessage;
 
     public void handleAddInDatabase()  {
 

@@ -46,9 +46,19 @@ public class TripService {
     public static ArrayList<Trip> getMyBookedTrips(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
-            if(!(trip.getBook().equals("0")&&trip.getAllSet().equals(LoginController.getLoggedUser())))list.add(trip);
+            if( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() ))
+                list.add(trip);
         }
         return list;
+    }
+
+    public static void clearTrip(String location, String period,String price){
+        for(Trip trip:tripRepository.find()) {
+            if(trip.getLocation()!=null && trip.getLocation().equals(location) && trip.getPeriod().equals(period) && trip.getPrice().equals(price)) {
+                tripRepository.remove(trip);
+                break;
+            }
+        }
     }
 
 }

@@ -60,7 +60,7 @@
          </font>
       </Button>
 
-      <Button fx:id="buttonDelete" layoutX="156.0" layoutY="35.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Delete" textFill="WHITE">
+      <Button fx:id="buttonDelete" layoutX="156.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRemoveTrip" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Delete" textFill="WHITE">
 
          <font>
             <Font name="System Bold" size="13.0" />

@@ -14,7 +14,7 @@ public class Trip {
     private String allset;
 
 
-    public Trip(String location,  String price, String period) {
+    public Trip(String location,  String period, String price) {
         this.location = location;
         this.price = price;
         this.period = period;
@@ -74,6 +74,6 @@ public class Trip {
 
     @Override
     public int hashCode() {
-        return Objects.hash(location, price, period, book,allset);
+        return Objects.hash(location, period, price, book,allset);
     }
 }
