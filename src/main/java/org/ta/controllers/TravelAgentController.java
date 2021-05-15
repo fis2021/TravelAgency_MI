@@ -18,6 +18,9 @@ import java.util.Objects;
 
 public class TravelAgentController {
 
+
+public class TravelAgentController {
+
     @FXML
     private TableView<Trip> tripsTable;
     @FXML
