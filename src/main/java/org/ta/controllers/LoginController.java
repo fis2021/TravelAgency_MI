@@ -68,4 +68,8 @@ public class LoginController {
     public static String getLoggedUser(){
         return loggedUser;
     }
+
+    public static void setLoggedUser(String username){
+        loggedUser=username;
+    }
 }

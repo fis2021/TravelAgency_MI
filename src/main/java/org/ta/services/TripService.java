@@ -16,7 +16,7 @@ public class TripService {
 
     public static void initDatabase() {
         FileSystemService.initDirectory();
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("trips.db").toFile())
                 .openOrCreate("test", "test");
 
