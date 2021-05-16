@@ -64,7 +64,7 @@ public class RecommendController {
         singleTrip=tripsTable.getSelectionModel().getSelectedItems();
         TripService.AllSetThisTrip(singleTrip.get(0));
         TripService.setBookRec(singleTrip.get(0));
-        TripService.clearTrip("?","?","?");
+        TripService.clearTripRec("?","?");
         allTrips= tripsTable.getItems();
         singleTrip.forEach(allTrips::remove);
     }
