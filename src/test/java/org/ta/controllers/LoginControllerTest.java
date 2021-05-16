@@ -25,7 +25,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-class LoginTest {
+class LoginControllerTest {
     public static final String USERNAMECOMPANY = "company";
     public static final String USERNAMECUSTOMER = "customer";
     public static final String PASSWORD = "password";
