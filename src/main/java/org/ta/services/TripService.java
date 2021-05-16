@@ -17,7 +17,7 @@ public class TripService {
     public static void initDatabase() {
         FileSystemService.initDirectory();
         database = Nitrite.builder()
-                .filePath(FileSystemService.getPathToFile("trips.db").toFile())
+                .filePath(FileSystemService.getPathToFile("tripss.db").toFile())
                 .openOrCreate("test", "test");
 
         tripRepository = database.getRepository(Trip.class);
@@ -74,7 +74,7 @@ public class TripService {
     public static ArrayList<Trip> getMyBookedTrips(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
-            if( ( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() )) || (trip.getPeriod().equals("?") && !(trip.getBook().equals("0"))))
+            if( ( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() )) || (trip.getPeriod().equals("?") ))
                 list.add(trip);
         }
         return list;
