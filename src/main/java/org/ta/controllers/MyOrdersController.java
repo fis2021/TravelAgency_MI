@@ -21,6 +21,24 @@ import java.util.List;
 public class MyOrdersController {
 
     @FXML
+    private TableView<Trip> myOrdersTable;
+    @FXML
+    private TableColumn<Trip,String> locationColumn;
+    @FXML
+    private TableColumn<Trip,String> periodColumn;
+    @FXML
+    private TableColumn<Trip,String> priceColumn;
+
+    public void initialize() {
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+        myOrdersTable.setItems(trips);
+    }
+    private ObservableList<Trip> trips = FXCollections.observableArrayList(TripService.getMyBookedTrips());
+
+    @FXML
     public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
@@ -47,50 +65,22 @@ public class MyOrdersController {
         window.show();
         handleRemoveTrip();
     }
-    @FXML
-    private TableView<Trip> myOrdersTable;
-    @FXML
-    private TableColumn<Trip,String> locationColumn;
-    @FXML
-    private TableColumn<Trip,String> periodColumn;
-    @FXML
-    private TableColumn<Trip,String> priceColumn;
-
-    public void initialize() {
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-        myOrdersTable.setItems(categories);
-    }
-    private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getMyBookedTrips());
-
-    public List<Trip> getTripsFromTable() {
-        return myOrdersTable.getItems();
-    }
 
     @FXML
     public void allSetTrip() {
         ObservableList<Trip> singleTrip,allTrips;
         singleTrip=myOrdersTable.getSelectionModel().getSelectedItems();
-
         TripService.AllSetThisTrip(singleTrip.get(0));
-
-
         allTrips= myOrdersTable.getItems();
         singleTrip.forEach(allTrips::remove);
-
     }
 
     public void handleRemoveTrip() {
         ObservableList<Trip> allTrips,singleTrip;
         singleTrip=myOrdersTable.getSelectionModel().getSelectedItems();
-
         TripService.clearTrip(singleTrip.get(0).getLocation(),singleTrip.get(0).getPeriod(),singleTrip.get(0).getPrice());
-
         allTrips= myOrdersTable.getItems();
         singleTrip.forEach(allTrips::remove);
     }
-
 }
 

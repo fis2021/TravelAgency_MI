@@ -17,6 +17,7 @@ public class UserService {
     private static ObjectRepository<User> userRepository;
 
     public static void initDatabase() {
+        FileSystemService.initDirectory();
         Nitrite database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("users.db").toFile())
                 .openOrCreate("test", "test");

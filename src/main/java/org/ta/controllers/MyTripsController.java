@@ -20,24 +20,6 @@ import java.util.Objects;
 public class MyTripsController {
 
     @FXML
-    public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
-        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
-        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
-        window.setTitle("Travel Agency");
-        window.setScene(new Scene(root1, 600, 400));
-        window.show();
-    }
-
-    public void goToCustomerHome(javafx.event.ActionEvent login)throws Exception {
-        Parent customerInterface = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("customer_home.fxml")));
-        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
-        ;
-        window.setTitle("Customer Page");
-        window.setScene(new Scene(customerInterface, 600, 400));
-        window.show();
-    }
-
-    @FXML
     private TableView<Trip> myTripsTable;
     @FXML
     private TableColumn<Trip,String> locationColumn;
@@ -56,9 +38,21 @@ public class MyTripsController {
 
     private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getMyTripsCustomer());
 
-    public List<Trip> getTripsFromTable() {
-        return myTripsTable.getItems();
+    @FXML
+    public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;
+        window.setTitle("Travel Agency");
+        window.setScene(new Scene(root1, 600, 400));
+        window.show();
     }
 
-
+    public void goToCustomerHome(javafx.event.ActionEvent login)throws Exception {
+        Parent customerInterface = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("customer_home.fxml")));
+        Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();
+        ;
+        window.setTitle("Customer Page");
+        window.setScene(new Scene(customerInterface, 600, 400));
+        window.show();
+    }
 }

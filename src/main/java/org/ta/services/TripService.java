@@ -14,22 +14,26 @@ public class TripService {
     private static ObjectRepository<Trip> tripRepository;
 
     public static void initDatabase() {
+        FileSystemService.initDirectory();
         Nitrite database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("trips.db").toFile())
                 .openOrCreate("test", "test");
 
         tripRepository = database.getRepository(Trip.class);
     }
+
     public static void addTrip(String location, String price, String period) throws LocationAlreadyExistsException {
         checkLocationDoesNotAlreadyExist(location);
         tripRepository.insert(new Trip(location,price, period));
     }
+
     public static void checkLocationDoesNotAlreadyExist(String location) throws LocationAlreadyExistsException {
         for (Trip trip : tripRepository.find()) {
             if (Objects.equals(location, trip.getLocation()))
                 throw new LocationAlreadyExistsException(location);
         }
     }
+
     public static ArrayList<Trip> getAllTrips(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
@@ -46,6 +50,15 @@ public class TripService {
                 list.add(trip);
         }
         return list;
+    }
+
+    public static void clearTrip(String location, String period,String price){
+        for(Trip trip:tripRepository.find()) {
+            if(trip.getLocation()!=null && trip.getLocation().equals(location) && trip.getPeriod().equals(period) && trip.getPrice().equals(price)) {
+                tripRepository.remove(trip);
+                break;
+            }
+        }
     }
 
     public static ArrayList<Trip> getMyTripsCustomer(){
@@ -72,15 +85,6 @@ public class TripService {
         return list;
     }
 
-    public static void clearTrip(String location, String period,String price){
-        for(Trip trip:tripRepository.find()) {
-            if(trip.getLocation()!=null && trip.getLocation().equals(location) && trip.getPeriod().equals(period) && trip.getPrice().equals(price)) {
-                tripRepository.remove(trip);
-                break;
-            }
-        }
-    }
-
     public static void BookThisTrip(Trip bookTrip){
         for(Trip trip:tripRepository.find()) {
             if(trip.getLocation()!=null && trip.getLocation().equals(bookTrip.getLocation()) ) {
@@ -89,7 +93,6 @@ public class TripService {
                 break;
             }
         }
-
     }
 
     public static void AllSetThisTrip(Trip bookTrip){
@@ -100,11 +103,9 @@ public class TripService {
                 break;
             }
         }
-
     }
 
     public static void setBook(Trip bookTrip){
         bookTrip.setBook(bookTrip.getBook());
     }
-
 }
