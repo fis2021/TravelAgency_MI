@@ -52,7 +52,7 @@
                 </Text>
             </children>
         </GridPane>
-        <Button fx:id="LogOutbutton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
-        <Button fx:id="HomeButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToCustomerHome" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Home" textFill="WHITE" />
+        <Button fx:id="LogOutbutton" id="logout" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
+        <Button fx:id="HomeButton" id="home" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToCustomerHome" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Home" textFill="WHITE" />
     </children>
 </AnchorPane>

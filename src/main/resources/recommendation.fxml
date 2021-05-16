@@ -51,12 +51,12 @@
                 </Text>
             </children>
         </GridPane>
-        <Button fx:id="LogOutbutton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
-        <Button fx:id="RecommendButton" layoutX="91.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRecommendation" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #3c8bb6;" text="Recommend" textFill="WHITE">
+        <Button fx:id="LogOutButton" id="logout" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
+        <Button fx:id="RecommendButton"  layoutX="91.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRecommendation" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #3c8bb6;" text="Recommend" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>
         </Button>
-        <Button fx:id="HomeButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToTravelAgentHome" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Home" textFill="WHITE" />
+        <Button fx:id="HomeButton" id="home" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goToTravelAgentHome" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Home" textFill="WHITE" />
     </children>
 </AnchorPane>
