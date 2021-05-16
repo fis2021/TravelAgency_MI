@@ -42,21 +42,21 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="usernameField" layoutX="146.0" layoutY="158.0" promptText="Username" />
-                <PasswordField fx:id="passwordField" layoutX="146.0" layoutY="214.0" promptText="Password" />
-                <Label fx:id="wrongLogIn" layoutX="153.0" layoutY="260.0" textFill="RED" />
-                <Button fx:id="button2" layoutX="186.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleRegisterAction" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Sign Up" />
+                <TextField fx:id="usernameField" id="username" layoutX="146.0" layoutY="158.0" promptText="Username" />
+                <PasswordField fx:id="passwordField" id="password" layoutX="146.0" layoutY="214.0" promptText="Password" />
+                <Label fx:id="wrongLogIn" id="wrongLogin" layoutX="153.0" layoutY="260.0" textFill="RED" />
+                <Button fx:id="button2" id="register" layoutX="186.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleRegisterAction" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Sign Up" />
             <Label layoutX="82.0" layoutY="254.0" text="Role" textFill="#ffc900">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="role" layoutX="146.0" layoutY="256.0" prefWidth="150.0" />
-            <Text fx:id="registrationMessage" fill="#ff0707" layoutX="7.0" layoutY="313.0" nodeOrientation="LEFT_TO_RIGHT">
+            <ChoiceBox fx:id="role" id="role" layoutX="146.0" layoutY="256.0" prefWidth="150.0" />
+            <Text fx:id="registrationMessage" id="text" fill="#ff0707" layoutX="7.0" layoutY="313.0" nodeOrientation="LEFT_TO_RIGHT">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Text>
-            <Button fx:id="button" layoutX="52.0" layoutY="336.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-background-color: #ffc900;" text="Log In Now" />
+            <Button fx:id="button" id="login" layoutX="52.0" layoutY="336.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-background-color: #ffc900;" text="Log In Now" />
             </children>
         </AnchorPane>
     </center>
