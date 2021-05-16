@@ -97,7 +97,6 @@ class TripServiceTest {
 
         LoginController.setLoggedUser(ADMIN);
 
-        Trip tr = TripService.getTrip(ADMIN3);
         assertThat(TripService.getMyBookedTrips()).size().isEqualTo(0);
       //  Trip trip1 = TripService.getAllTripsCustomer().get(1);
         LoginController.setLoggedUser(ADMIN2);
