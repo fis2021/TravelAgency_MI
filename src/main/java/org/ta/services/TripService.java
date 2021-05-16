@@ -70,16 +70,10 @@ public class TripService {
         return list;
     }
 
-    public static Trip getTrip(String location){
-        for(Trip trip : tripRepository.find())
-            if(Objects.equals(location, trip.getLocation()))
-                return trip;
-        return null;
-    }
     public static ArrayList<Trip> getMyBookedTrips(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
-            if( ( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() )) || trip.getPeriod().equals("?") )
+            if( ( !(trip.getBook().equals("0") ) && trip.getAllSet().equals(LoginController.getLoggedUser() )) || (trip.getPeriod().equals("?") && !(trip.getBook().equals("0"))))
                 list.add(trip);
         }
         return list;
@@ -105,7 +99,23 @@ public class TripService {
         }
     }
 
-    public static void setBook(Trip bookTrip){
-        bookTrip.setBook(bookTrip.getBook());
+    public static void setBookRec(Trip bookTrip){
+
+        for(Trip trip:tripRepository.find()) {
+            if(trip.getLocation()!=null && trip.getLocation().equals(bookTrip.getLocation()) ) {
+                trip.setBook(bookSearch());
+                tripRepository.update(trip);
+                break;
+            }
+        }
+    }
+    public static String bookSearch() {
+        for (Trip tripSearch : tripRepository.find()) {
+            if (tripSearch.getLocation() != null && tripSearch.getLocation().equals("?")) {
+                return tripSearch.getAllSet();
+            }
+
+        }
+        return "";
     }
 }

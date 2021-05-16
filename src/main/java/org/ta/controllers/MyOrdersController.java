@@ -63,7 +63,6 @@ public class MyOrdersController {
         window.setTitle("Recommendation");
         window.setScene(new Scene(root1, 600, 400));
         window.show();
-        handleRemoveTrip();
     }
 
     @FXML
@@ -75,12 +74,6 @@ public class MyOrdersController {
         singleTrip.forEach(allTrips::remove);
     }
 
-    public void handleRemoveTrip() {
-        ObservableList<Trip> allTrips,singleTrip;
-        singleTrip=myOrdersTable.getSelectionModel().getSelectedItems();
-        TripService.clearTrip(singleTrip.get(0).getLocation(),singleTrip.get(0).getPeriod(),singleTrip.get(0).getPrice());
-        allTrips= myOrdersTable.getItems();
-        singleTrip.forEach(allTrips::remove);
-    }
+
 }
 
