@@ -12,6 +12,7 @@ import java.util.Objects;
 public class TripService {
 
     private static ObjectRepository<Trip> tripRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
         FileSystemService.initDirectory();
@@ -107,5 +108,9 @@ public class TripService {
 
     public static void setBook(Trip bookTrip){
         bookTrip.setBook(bookTrip.getBook());
+    }
+
+    public static Nitrite getDatabase(){
+        return database;
     }
 }
