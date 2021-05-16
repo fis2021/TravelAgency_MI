@@ -12,10 +12,11 @@ import java.util.Objects;
 public class TripService {
 
     private static ObjectRepository<Trip> tripRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
         FileSystemService.initDirectory();
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("trips.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -117,5 +118,9 @@ public class TripService {
 
         }
         return "";
+    }
+
+    public static Nitrite getDatabase(){
+        return database;
     }
 }

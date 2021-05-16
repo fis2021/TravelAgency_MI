@@ -23,7 +23,7 @@
         </ImageView>
         <ScrollPane layoutX="100.0" layoutY="96.0" prefHeight="290.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="96.0">
             <content>
-                <TableView fx:id="tripsTable" prefHeight="288.0">
+                <TableView fx:id="tripsTable" id="table" prefHeight="288.0">
                     <columns>
                         <TableColumn fx:id="locationColumn" maxWidth="150.0" prefWidth="150.0" text="Location" />
                         <TableColumn fx:id="periodColumn" maxWidth="150.0" prefWidth="150.0" text="Period" />
@@ -52,22 +52,22 @@
             </children>
         </GridPane>
 
-        <Button fx:id="logoutButton" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
-      <Button fx:id="buttonAdd" layoutX="34.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddTripButton" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Add" textFill="WHITE">
+        <Button fx:id="logoutButton" id="logout" layoutX="523.0" layoutY="-7.0" mnemonicParsing="false" onAction="#goBackToLoginScene" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="Log out" textFill="WHITE" />
+      <Button fx:id="buttonAdd" id="add" layoutX="34.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAddTripButton" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Add" textFill="WHITE">
 
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
 
-      <Button fx:id="buttonDelete" layoutX="156.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRemoveTrip" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Delete" textFill="WHITE">
+      <Button fx:id="buttonDelete" id="delete" layoutX="156.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleRemoveTrip" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #3c8bb6;" text="Delete" textFill="WHITE">
 
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
 
-      <Button fx:id="MyOrdersButton" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="MyOrders" textFill="WHITE" />
+      <Button fx:id="MyOrdersButton" id="myorders" layoutX="453.0" layoutY="-7.0" mnemonicParsing="false" onAction="#handleOrders" prefHeight="33.0" prefWidth="92.0" style="-fx-region-background: 0;" text="MyOrders" textFill="WHITE" />
 
     </children>
 </AnchorPane>

@@ -2,23 +2,28 @@ package org.ta.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.ta.controllers.LoginController;
+import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.exceptions.UsernameAlreadyExistsException;
 import org.ta.exceptions.UsernameDoesNotExistException;
 import org.ta.exceptions.WrongPasswordException;
+import org.ta.model.Trip;
 import org.ta.model.User;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class UserService {
 
     private static ObjectRepository<User> userRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
         FileSystemService.initDirectory();
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(FileSystemService.getPathToFile("users.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -41,7 +46,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -102,4 +107,29 @@ public class UserService {
         return "";
     }
 
+    public static Nitrite getDatabase(){
+        return database;
+    }
+
+    public static ArrayList<User> getAllUsers(){
+        ArrayList<User> list = new ArrayList<>();
+        for(User user : userRepository.find()) {
+            list.add(user);
+        }
+        return list;
+    }
+
+    public static void checkUsernameDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username,user.getUsername()))
+                throw new UsernameAlreadyExistsException(username);
+        }
+    }
+
+    public static void checkUsernameAndPassword(String username,String password) throws UsernameAlreadyExistsException {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()) && Objects.equals(encodePassword(username, password), user.getPassword()))
+                throw new UsernameAlreadyExistsException(username);
+        }
+    }
 }

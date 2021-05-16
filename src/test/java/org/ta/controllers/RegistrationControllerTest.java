@@ -25,7 +25,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-class LoginTest {
+class RegistrationControllerTest {
     public static final String USERNAMECOMPANY = "company";
     public static final String USERNAMECUSTOMER = "customer";
     public static final String PASSWORD = "password";
@@ -54,49 +54,23 @@ class LoginTest {
     }
 
     @Test
-    void testLoginCompany(FxRobot robot) throws UsernameAlreadyExistsException{
-        UserService.addUser(USERNAMECOMPANY,PASSWORD,"Travel Agent");
-        robot.clickOn("#username");
-        robot.write(USERNAMECOMPANY);
-        robot.clickOn("#password");
-        robot.write(PASSWORD);
-        robot.clickOn("#login");
-    }
-
-    @Test
-    void testLoginCustomer(FxRobot robot) throws UsernameAlreadyExistsException {
-        UserService.addUser(USERNAMECUSTOMER,PASSWORD,"Customer");
-        robot.clickOn("#username");
-        robot.write(USERNAMECUSTOMER);
-        robot.clickOn("#password");
-        robot.write(PASSWORD);
-        robot.clickOn("#login");
-    }
-
-    @Test
-    void testCustomerCanNotEnterInvalidCredentials(FxRobot robot) throws UsernameAlreadyExistsException{
-        UserService.addUser(USERNAMECUSTOMER,PASSWORD,"Customer");;
-        robot.clickOn("#username");
-        robot.write("customerWRONG");
-        robot.clickOn("#password");
-        robot.write(PASSWORD);
-        robot.clickOn("#login");
-        assertThat(robot.lookup("#wrongLogin").queryText()).hasText(String.format("    An account with this username does not exist!"));
-    }
-
-    @Test
-    void testRedirectToRegister(FxRobot robot) {
+    void testRegister(FxRobot robot) throws UsernameAlreadyExistsException {
         robot.clickOn("#register");
-    }
 
-    @Test
-    void testWrongPassword(FxRobot robot) throws UsernameAlreadyExistsException {
-        UserService.addUser(USERNAMECUSTOMER,PASSWORD,"Customer");;
         robot.clickOn("#username");
         robot.write("customer");
         robot.clickOn("#password");
-        robot.write("wrong");
+        robot.write("password");
+        robot.clickOn("#role");
+        robot.type(KeyCode.DOWN);
+        robot.type(KeyCode.ENTER);
+        robot.clickOn("#register");
+        assertThat(robot.lookup("#text").queryText()).hasText(String.format("                    Account created successfully!"));
+    }
+
+    @Test
+    void testRedirectToLogin(FxRobot robot) {
+        robot.clickOn("#register");
         robot.clickOn("#login");
-        assertThat(robot.lookup("#wrongLogin").queryText()).hasText(String.format("    Wrong password ! "));
     }
 }

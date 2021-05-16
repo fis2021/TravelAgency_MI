@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.ta.exceptions.LocationAlreadyExistsException;
 import org.ta.exceptions.UsernameAlreadyExistsException;
 import org.ta.services.FileSystemService;
 import org.ta.services.TripService;
@@ -25,7 +26,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-class LoginTest {
+class AddTripsControllerTest {
     public static final String USERNAMECOMPANY = "company";
     public static final String USERNAMECUSTOMER = "customer";
     public static final String PASSWORD = "password";
@@ -37,8 +38,8 @@ class LoginTest {
     }
 
     @BeforeEach
-    void setUp() throws Exception{
-        FileSystemService.APPLICATION_FOLDER=".test";
+    void setUp() throws Exception {
+        FileSystemService.APPLICATION_FOLDER = ".test";
         FileSystemService.initDirectory();
         FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         UserService.initDatabase();
@@ -52,51 +53,33 @@ class LoginTest {
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
-
     @Test
-    void testLoginCompany(FxRobot robot) throws UsernameAlreadyExistsException{
+    void testBack(FxRobot robot) throws UsernameAlreadyExistsException{
         UserService.addUser(USERNAMECOMPANY,PASSWORD,"Travel Agent");
         robot.clickOn("#username");
         robot.write(USERNAMECOMPANY);
         robot.clickOn("#password");
         robot.write(PASSWORD);
         robot.clickOn("#login");
+        robot.clickOn("#add");
+        robot.clickOn("#back");
     }
-
     @Test
-    void testLoginCustomer(FxRobot robot) throws UsernameAlreadyExistsException {
-        UserService.addUser(USERNAMECUSTOMER,PASSWORD,"Customer");
+    void testAdd(FxRobot robot) throws UsernameAlreadyExistsException{
+        UserService.addUser(USERNAMECOMPANY,PASSWORD,"Travel Agent");
         robot.clickOn("#username");
-        robot.write(USERNAMECUSTOMER);
+        robot.write(USERNAMECOMPANY);
         robot.clickOn("#password");
         robot.write(PASSWORD);
         robot.clickOn("#login");
+        robot.clickOn("#add");
+        robot.clickOn("#price");
+        robot.write("price");
+        robot.clickOn("#location");
+        robot.write("location");
+        robot.clickOn("#period");
+        robot.write("pperiod");
+        robot.clickOn("#ad1");
     }
 
-    @Test
-    void testCustomerCanNotEnterInvalidCredentials(FxRobot robot) throws UsernameAlreadyExistsException{
-        UserService.addUser(USERNAMECUSTOMER,PASSWORD,"Customer");;
-        robot.clickOn("#username");
-        robot.write("customerWRONG");
-        robot.clickOn("#password");
-        robot.write(PASSWORD);
-        robot.clickOn("#login");
-        assertThat(robot.lookup("#wrongLogin").queryText()).hasText(String.format("    An account with this username does not exist!"));
-    }
-
-    @Test
-    void testRedirectToRegister(FxRobot robot) {
-        robot.clickOn("#register");
-    }
-
-    @Test
-    void testWrongPassword(FxRobot robot) throws UsernameAlreadyExistsException {
-        UserService.addUser(USERNAMECUSTOMER,PASSWORD,"Customer");;
-        robot.clickOn("#username");
-        robot.write("customer");
-        robot.clickOn("#password");
-        robot.write("wrong");
-        robot.clickOn("#login");
-        assertThat(robot.lookup("#wrongLogin").queryText()).hasText(String.format("    Wrong password ! "));
-    }
 }

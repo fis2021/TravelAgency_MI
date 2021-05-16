@@ -12,9 +12,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.class.name>org.ta.Main</main.class.name>
         <final.jar.name>travel-agency</final.jar.name>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
- /*   <dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -121,7 +123,7 @@
                         <option>--add-exports</option>
                         <option>javafx.base/com.sun.javafx.event=ALL-UNNAMED</option>
                     </options>
-                    <mainClass>org.openjfx.App</mainClass>
+                    <mainClass>org.ta.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
