@@ -62,6 +62,15 @@ public class TripService {
         }
     }
 
+    public static void clearTripRec( String period,String price){
+        for(Trip trip:tripRepository.find()) {
+            if(trip.getLocation()!=null && trip.getPeriod().equals(period) && trip.getPrice().equals(price)) {
+                tripRepository.remove(trip);
+                break;
+            }
+        }
+    }
+
     public static ArrayList<Trip> getMyTripsCustomer(){
         ArrayList<Trip> list = new ArrayList<>();
         for(Trip trip : tripRepository.find()) {
@@ -112,7 +121,7 @@ public class TripService {
     }
     public static String bookSearch() {
         for (Trip tripSearch : tripRepository.find()) {
-            if (tripSearch.getLocation() != null && tripSearch.getLocation().equals("?")) {
+            if (tripSearch.getLocation() != null && tripSearch.getPeriod().equals("?")) {
                 return tripSearch.getAllSet();
             }
 
