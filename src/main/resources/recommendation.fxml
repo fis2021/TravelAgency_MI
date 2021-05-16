@@ -21,7 +21,7 @@
                 <Image url="@img/background.jpg" />
             </image>
         </ImageView>
-        <ScrollPane layoutX="112.0" layoutY="100.0" prefHeight="290.0" prefWidth="413.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="100.0">
+        <ScrollPane layoutX="93.0" layoutY="96.0" prefHeight="290.0" prefWidth="413.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="96.0">
             <content>
                 <TableView fx:id="tripsTable" prefHeight="282.0" prefWidth="399.0">
                     <columns>

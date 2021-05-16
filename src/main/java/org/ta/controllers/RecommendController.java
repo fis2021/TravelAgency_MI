@@ -56,12 +56,15 @@ public class RecommendController {
         window.show();
     }
 
+
+
     @FXML
     public void handleRecommendation() {
         ObservableList<Trip> singleTrip,allTrips;
         singleTrip=tripsTable.getSelectionModel().getSelectedItems();
         TripService.AllSetThisTrip(singleTrip.get(0));
-        TripService.setBook(singleTrip.get(0));
+        TripService.setBookRec(singleTrip.get(0));
+        TripService.clearTrip("?","?","?");
         allTrips= tripsTable.getItems();
         singleTrip.forEach(allTrips::remove);
     }

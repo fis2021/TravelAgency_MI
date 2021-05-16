@@ -21,11 +21,10 @@
                 <Image url="@img/background.jpg" />
             </image>
         </ImageView>
-        <ScrollPane layoutX="112.0" layoutY="100.0" prefHeight="265.0" prefWidth="377.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+        <ScrollPane layoutX="100.0" layoutY="96.0" prefHeight="290.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="96.0">
             <content>
                 <TableView fx:id="myOrdersTable" prefHeight="288.0">
                     <columns>
-                        <TableColumn fx:id="firstNameColumn" maxWidth="150.0" prefWidth="150.0" />
                         <TableColumn fx:id="locationColumn" maxWidth="150.0" prefWidth="150.0" text="Location" />
                         <TableColumn fx:id="periodColumn" maxWidth="150.0" prefWidth="150.0" text="Period" />
                         <TableColumn fx:id="priceColumn" maxWidth="109.0" minWidth="-1.0" prefWidth="96.0" text="Price&#10;" />
