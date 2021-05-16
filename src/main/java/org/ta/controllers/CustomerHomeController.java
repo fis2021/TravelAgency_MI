@@ -63,8 +63,14 @@ public class CustomerHomeController {
         singleTrip.forEach(allTrips::remove);
     }
 
-
+    private String locationRec="";
+    private int count=0;
     public void handleRecommendationInDatabase() throws LocationAlreadyExistsException {
-        TripService.addTrip("?", "?", "?");
+        count++;
+        for(int i=1;i<=count;i++){
+            locationRec=locationRec+"?";
+        }
+
+        TripService.addTrip(locationRec, "?", "?");
     }
 }

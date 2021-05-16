@@ -21,9 +21,9 @@
                 <Image url="@img/background.jpg" />
             </image>
         </ImageView>
-        <ScrollPane layoutX="93.0" layoutY="96.0" prefHeight="290.0" prefWidth="413.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="96.0">
+        <ScrollPane layoutX="100.0" layoutY="96.0" prefHeight="290.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="96.0">
             <content>
-                <TableView fx:id="tripsTable" prefHeight="282.0" prefWidth="399.0">
+                <TableView fx:id="tripsTable" prefHeight="288.0">
                     <columns>
                         <TableColumn fx:id="locationColumn" maxWidth="150.0" prefWidth="150.0" text="Location" />
                         <TableColumn fx:id="periodColumn" maxWidth="150.0" prefWidth="150.0" text="Period" />
