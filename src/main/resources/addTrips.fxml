@@ -41,7 +41,9 @@
                     </font>
                 </Label>
 
+
                 <Button fx:id="addButton" id="ad1" layoutX="184.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleAddInDatabase" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Add Trip" />
+
                 <Text fx:id="addMessage" fill="#ff0707" layoutX="59.0" layoutY="374.0" nodeOrientation="LEFT_TO_RIGHT" wrappingWidth="141.0">
                     <font>
                         <Font name="System Bold" size="13.0" />
