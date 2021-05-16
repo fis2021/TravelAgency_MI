@@ -34,25 +34,9 @@ public class CustomerHomeController {
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
         periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-        offersTable.setItems(categories);
+        offersTable.setItems(trips);
     }
-    private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getAllTripsCustomer());
-    public List<Trip> getTripsFromTable() {
-        return offersTable.getItems();
-    }
-
-
-    public void bookTrip() {
-        ObservableList<Trip> singleTrip,allTrips;
-        singleTrip=offersTable.getSelectionModel().getSelectedItems();
-
-        TripService.BookThisTrip(singleTrip.get(0));
-
-        allTrips= offersTable.getItems();
-        singleTrip.forEach(allTrips::remove);
-
-    }
+    private ObservableList<Trip> trips = FXCollections.observableArrayList(TripService.getAllTripsCustomer());
 
     @FXML
     public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
@@ -71,6 +55,13 @@ public class CustomerHomeController {
         window.setScene(new Scene(root2, 600, 400));
         window.show();
     }
+    public void bookTrip() {
+        ObservableList<Trip> singleTrip,allTrips;
+        singleTrip=offersTable.getSelectionModel().getSelectedItems();
+        TripService.BookThisTrip(singleTrip.get(0));
+        allTrips= offersTable.getItems();
+        singleTrip.forEach(allTrips::remove);
+    }
 
     private int counter=0;
 
@@ -85,16 +76,8 @@ public class CustomerHomeController {
 
     public void handleRecommendationInDatabase() throws LocationAlreadyExistsException {
         counter++;
-
         setLocationRec(counter,locationRec);
-
         TripService.checkLocationDoesNotAlreadyExist(locationRec);
         TripService.addTrip("?", "?", "?");
-
     }
-
-
-
-
-
 }

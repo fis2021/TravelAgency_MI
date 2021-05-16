@@ -24,19 +24,18 @@ public class AddTripsController {
     private Text addMessage;
 
     public void handleAddInDatabase()  {
-
         try {
             TripService.checkLocationDoesNotAlreadyExist(locationField.getText());
             TripService.addTrip(locationField.getText(), periodField.getText(), priceField.getText());
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("travelAgent_home.fxml")));
             Stage window = (Stage) addMessage.getScene().getWindow();
             window.setScene(new Scene(root, 600, 400));
-
         }catch (Exception e){
             addMessage.setText(e.getMessage());
         }
 
     }
+
     public void handleGoBackButton(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("travelAgent_home.fxml")));
         Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;

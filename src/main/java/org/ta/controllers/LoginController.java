@@ -29,7 +29,6 @@ public class LoginController {
     private String userRole;
     private static String loggedUser;
 
-
     @FXML
     public void handleLoginAction(javafx.event.ActionEvent TripsPageInterface) throws Exception {
         try {
@@ -57,6 +56,7 @@ public class LoginController {
             wrongLogIn.setText(e.getMessage());
         }
     }
+
     public void goBackToResgisterScene(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
         Stage window = (Stage) ((Node) login.getSource()).getScene().getWindow();;

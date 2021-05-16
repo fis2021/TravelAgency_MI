@@ -35,10 +35,8 @@ public class RecommendController {
 
         tripsTable.setItems(categories);
     }
+
     private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getAllTrips());
-    public List<Trip> getTripsFromTable() {
-        return tripsTable.getItems();
-    }
 
     @FXML
     public void goBackToLoginScene(javafx.event.ActionEvent login)throws Exception{
@@ -62,14 +60,9 @@ public class RecommendController {
     public void handleRecommendation() {
         ObservableList<Trip> singleTrip,allTrips;
         singleTrip=tripsTable.getSelectionModel().getSelectedItems();
-
         TripService.AllSetThisTrip(singleTrip.get(0));
         TripService.setBook(singleTrip.get(0));
-
-
         allTrips= tripsTable.getItems();
         singleTrip.forEach(allTrips::remove);
-
     }
-
 }

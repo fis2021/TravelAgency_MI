@@ -41,11 +41,11 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="usernameField" layoutX="146.0" layoutY="158.0" promptText="Username" />
-                <PasswordField fx:id="passwordField" layoutX="146.0" layoutY="214.0" promptText="Password" />
-                <Button fx:id="button" layoutX="202.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Log In" />
+                <TextField fx:id="usernameField" id="username" layoutX="146.0" layoutY="158.0" promptText="Username" />
+                <PasswordField fx:id="passwordField" id="password" layoutX="146.0" layoutY="214.0" promptText="Password" />
+                <Button fx:id="button" id="login" layoutX="202.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Log In" />
             <Button fx:id="button2" layoutX="79.0" layoutY="310.0" mnemonicParsing="false" onAction="#goBackToResgisterScene" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Sign Up" />
-            <Text fx:id="wrongLogIn" fill="#ff0707" layoutX="17.0" layoutY="282.0" nodeOrientation="LEFT_TO_RIGHT">
+            <Text fx:id="wrongLogIn" id="wrongLogin" fill="#ff0707" layoutX="17.0" layoutY="282.0" nodeOrientation="LEFT_TO_RIGHT">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

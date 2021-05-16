@@ -18,9 +18,6 @@ import java.util.Objects;
 
 public class TravelAgentController {
 
-
-public class TravelAgentController {
-
     @FXML
     private TableView<Trip> tripsTable;
     @FXML
@@ -34,21 +31,16 @@ public class TravelAgentController {
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
         periodColumn.setCellValueFactory(new PropertyValueFactory<>("Period"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
         tripsTable.setItems(categories);
     }
+
     private ObservableList<Trip> categories = FXCollections.observableArrayList(TripService.getAllTrips());
-    public List<Trip> getTripsFromTable() {
-        return tripsTable.getItems();
-    }
 
     @FXML
     public void handleRemoveTrip() {
         ObservableList<Trip> allTrips,singleTrip;
         singleTrip=tripsTable.getSelectionModel().getSelectedItems();
-
         TripService.clearTrip(singleTrip.get(0).getLocation(),singleTrip.get(0).getPeriod(),singleTrip.get(0).getPrice());
-
         allTrips= tripsTable.getItems();
         singleTrip.forEach(allTrips::remove);
     }
@@ -61,6 +53,7 @@ public class TravelAgentController {
         window.setScene(new Scene(root1, 600, 400));
         window.show();
     }
+
     @FXML
     public void handleOrders(javafx.event.ActionEvent login)throws Exception{
         Parent root2 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("myOrders.fxml")));
@@ -69,6 +62,7 @@ public class TravelAgentController {
         window.setScene(new Scene(root2, 600, 400));
         window.show();
     }
+
     @FXML
     public void handleAddTripButton(javafx.event.ActionEvent login)throws Exception{
         Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("addTrips.fxml")));
@@ -77,7 +71,5 @@ public class TravelAgentController {
         window.setScene(new Scene(root1, 600, 400));
         window.show();
     }
-
-
-
 }
+
